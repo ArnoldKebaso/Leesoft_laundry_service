@@ -7,7 +7,7 @@ class User extends Database implements iUser {
 	{
 		$sql = "SELECT * 
 				FROM user
-				WHERE user_account = ?
+				WHERE username = ?
 				AND user_password = ?
 				LIMIT 1";
 		return $this->getRow($sql, [$username, $password]);
@@ -24,3 +24,4 @@ class User extends Database implements iUser {
 $user = new User();
 /* End of file User.php */
 /* Location: .//D/xampp/htdocs/laundry/class/User.php */
+?>

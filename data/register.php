@@ -1,4 +1,54 @@
-html, body, div, span, applet, object, iframe,
+<?php
+session_start();
+
+// Database connection
+$servername = "localhost"; // Change if your server name is different
+$username = "root";        // Your database username
+$password = "mAjimaji21!!";            // Your database password
+$dbname = "laundry"; // Your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = ($_POST['password']);
+    $confirmpassword = $_POST['confirmpassword'];
+
+    if ($_POST['password'] != $confirmpassword) {
+        echo "Passwords do not match.";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO user (username, email, user_password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $username, $email, $password);
+
+        if ($stmt->execute()) {
+            header("Location: ../index.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+    }
+    $stmt->close();
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register for Laundry Shop</title>
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+</head>
+<style>
+ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -146,12 +196,13 @@ body {
   text-align: center;
   text-shadow: 0 1px #2a85a1;
 }
-.login-help a, .register-help a {
+.login-help a {
   color: #cce7fa;
   text-decoration: none;
 }
 .login-help a:hover, .register-help a:hover {
   text-decoration: underline;
+  color: red;
 }
 
 :-moz-placeholder {
@@ -221,5 +272,34 @@ input[type=submit]:active {
 
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
-  
 }
+.register-help {
+    font-size: 12px;
+    color:black;
+}
+.register-link a{
+    font-size:12px;
+    color: red;
+    font-weight: bold;
+}
+
+
+
+</style>
+
+<body>
+<section class="container">
+    <div class="register">
+        <h1>Register for Laundry Shop</h1>
+        <form action="" method="post">
+            <p><input type="text" name="username" placeholder="Username" required></p>
+            <p><input type="email" name="email" placeholder="Email" required></p>
+            <p><input type="password" name="password" placeholder="Password" required></p>
+            <p><input type="password" name="confirmpassword" placeholder="Confirm Password" required></p>
+            <p class="submit"><input type="submit" value="Register"></p>
+        </form>
+        <p class="register-help" >Already have an account?&nbsp;&nbsp;&nbsp; <a href="../index.php">Login here</a>.</p>
+    </div>
+</section>
+</body>
+</html>

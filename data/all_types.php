@@ -17,7 +17,7 @@ $types = $laundry->get_all_laundry();
             	<?php foreach($types as $t): ?>
 	                <tr align="center">
 	                    <td align="left"><?= $t['laun_type_desc']; ?></td>
-	                    <td><?= '₱ '.number_format($t['laun_type_price'], 2); ?></td>
+	                    <td><?= 'KSh '.number_format($t['laun_type_price'], 2); ?></td>
 	                    <td>
                             <button onclick="editType('<?= $t['laun_type_id']; ?>');" type="button" class="btn btn-warning btn-xs">Edit
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

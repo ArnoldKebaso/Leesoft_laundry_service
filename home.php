@@ -67,7 +67,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            <small>Welcome Administrator!</small>
+            <small>Welcome to Leesoft Laundry Management System</small>
           </h1>
         </section>
 
@@ -110,9 +110,6 @@
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
-        </div>
         <strong>Copyright &copy; 2024 </strong>Leesoft Laundry System 
       </footer>
 

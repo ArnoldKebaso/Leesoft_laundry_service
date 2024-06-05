@@ -1,3 +1,4 @@
+use laundry;
 -- phpMyAdmin SQL Dump
 -- version 4.5.1
 -- http://www.phpmyadmin.net
@@ -6,6 +7,9 @@
 -- Generation Time: Apr 18, 2017 at 12:01 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
+
+-- CREATE DATABASE LAUNDRY;
+-- USE LAUNDRY;
 
 SET SQL_MODE
 = "NO_AUTO_VALUE_ON_ZERO";
@@ -40,12 +44,7 @@ laun_id`,
 `customer_name
 `, `laun_priority`, `laun_weight`, `laun_date_received`, `laun_claimed`, `laun_type_id`) VALUES
 (7, 'Wilma', 7, 3, '2024-04-19 16:40:49', 1, 1),
-(9, 'Jules ', 3, 2, '2024-03-19 22:43:23', 1, 1),
-(10, 'Jane Dougah Hah', 1, 2, '2017-03-19 22:43:23', 1, 2),
-(11, 'Johnny Deep', 7, 3, '2017-03-19 23:53:36', 1, 1),
-(12, 'Winnie Alterado Damayo', 2, 2, '2017-03-22 16:14:48', 1, 2),
-(13, 'Winnie Alterado Damayo', 4, 10, '2017-03-22 16:15:33', 1, 1),
-(14, 'Winnie Damayo', 2, 2, '2017-04-18 03:59:57', 0, 1);
+(9, 'Julia', 3, 2, '2024-03-19 22:43:23', 1, 1);
 
 -- Table structure for table `laundry_type`
 --
@@ -92,88 +91,92 @@ INSERT INTO `sales` (`
 sale_id`,
 `sale_customer_name
 `, `sale_type_desc`, `sale_date_paid`, `sale_laundry_received`, `sale_amount`) VALUES
-(1, 'Reyvelyn Ybanez Viovicente', 'Blanket', '2017-03-18 22:38:02', '2017-03-20 00:00:00', 60),
-(2, 'Jane Dougah Hah', 'Clothes', '2017-03-19 22:43:23', '2017-03-20 06:43:16', 60),
-(3, 'Winnie Alterado Damayo', 'Blanket', '2017-03-19 22:43:23', '2017-03-20 06:42:58', 40),
-(4, 'Johnny Deep', 'Blanket', '2017-03-19 23:53:36', '2017-03-20 07:53:27', 60),
-(5, 'Winnie Alterado Damayo', 'Clothes', '2017-03-22 16:14:47', '2017-03-23 00:14:40', 60),
-(6, 'Winnie Alterado Damayo', 'Blanket', '2017-03-22 16:15:33', '2017-03-23 00:15:28', 200);
+(1, 'Wilma', 'socks', '2024-05-30 22:38:02', '2024-05-31 07:00:16', 60),
+(2, 'Julia', 'Clothes', '2024-05-30 22:39:02', '2024-05-31 07:01:16', 60);
 
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user`
+CREATE TABLE user
 (
-  `user_id` int NOT NULL,
-  `user_account` varchar
-(50) NOT NULL,
-  `user_password` varchar
-(35) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  user_id int
+  auto_increment primary key,
+username varchar
+  (255),
+email varchar
+  (255),
+user_password varchar
+  (255)
+);
 
--- Dumping data for table `user`
---
 
-INSERT INTO `user`
-  (`user_id`, `user_account
-`, `user_password`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+  -- Dumping data for table `user`
+  --
 
--- Indexes for dumped tables
---
+  INSERT INTO `user`
+    (`user_id`, `user_account
+  
+  `, `user_password`) VALUES
+  (1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
--- Indexes for table `laundry`
---
-ALTER TABLE `laundry`
-ADD PRIMARY KEY
-(`laun_id`),
-ADD KEY `laun_type_id`
-(`laun_type_id`);
+  -- Indexes for dumped tables
+  --
 
--- Indexes for table `laundry_type`
---
-ALTER TABLE `laundry_type`
-ADD PRIMARY KEY
-(`laun_type_id`);
+  -- Indexes for table `laundry`
+  --
+  ALTER TABLE `laundry`
+  ADD PRIMARY KEY
+  (`laun_id`),
+  ADD KEY `laun_type_id`
+  (`laun_type_id`);
 
--- Indexes for table `sales`
---
-ALTER TABLE `sales`
-ADD PRIMARY KEY
-(`sale_id`);
+  -- Indexes for table `laundry_type`
+  --
+  ALTER TABLE `laundry_type`
+  ADD PRIMARY KEY
+  (`laun_type_id`);
 
--- Indexes for table `user`
---
-ALTER TABLE `user`
-ADD PRIMARY KEY
-(`user_id`);
+  -- Indexes for table `sales`
+  --
+  ALTER TABLE `sales`
+  ADD PRIMARY KEY
+  (`sale_id`);
 
--- AUTO_INCREMENT for dumped tables
---
+  -- Indexes for table `user`
+  --
+  ALTER TABLE `user`
+  ADD PRIMARY KEY
+  (`user_id`);
 
--- AUTO_INCREMENT for table `laundry`
---
-ALTER TABLE `laundry`
+  -- AUTO_INCREMENT for dumped tables
+  --
+
+  -- AUTO_INCREMENT for table `laundry`
+  --
+  ALTER TABLE `laundry`
   MODIFY `laun_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
--- AUTO_INCREMENT for table `laundry_type`
---
-ALTER TABLE `laundry_type`
+
+  -- AUTO_INCREMENT for table `laundry_type`
+  --
+  ALTER TABLE `laundry_type`
   MODIFY `laun_type_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
--- AUTO_INCREMENT for table `sales`
---
-ALTER TABLE `sales`
+
+  -- AUTO_INCREMENT for table `sales`
+  --
+  ALTER TABLE `sales`
   MODIFY `sale_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
+
+  -- AUTO_INCREMENT for table `user`
+  --
+  ALTER TABLE `user`
   MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
--- Constraints for dumped tables
---
 
--- Constraints for table `laundry`
---
-ALTER TABLE `laundry`
-ADD CONSTRAINT `laundry_ibfk_1` FOREIGN KEY
-(`laun_type_id`) REFERENCES `laundry_type`
-(`laun_type_id`);
+  -- Constraints for dumped tables
+  --
 
+  -- Constraints for table `laundry`
+  --
+  ALTER TABLE `laundry`
+  ADD CONSTRAINT `laundry_ibfk_1` FOREIGN KEY
+  (`laun_type_id`) REFERENCES `laundry_type`
+  (`laun_type_id`);

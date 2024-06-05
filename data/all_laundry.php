@@ -30,7 +30,7 @@ $laundries = $laundry->all_laundry();
                     <td><?= $l['laun_weight']; ?></td>
                     <td><?= $l['laun_type_desc']; ?></td>
                     <td><?= $l['laun_date_received']; ?></td>
-                    <td><?= '₱ '.number_format($amount, 2); ?></td>
+                    <td><?= 'KSh '.number_format($amount, 2); ?></td>
                     <td>
                         <button onclick="editLaundry('<?= $l['laun_id']; ?>')" type="button" class="btn btn-warning btn-xs">
                            Edit
