@@ -18,11 +18,19 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = ($_POST['password']);
+    $password = $_POST['password'];
     $confirmpassword = $_POST['confirmpassword'];
+
+    // Regular expression to check password strength
+    $passwordRegex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
 
     if ($_POST['password'] != $confirmpassword) {
         echo "Passwords do not match.";
+    } elseif (!preg_match($passwordRegex, $password)) {
+        echo "<script>
+                alert('Password must be at least 8 characters long and contain at least one uppercase letter, one number, and one special character.');
+                window.location.href = 'register.php';
+              </script>";
     } else {
         $stmt = $conn->prepare("INSERT INTO user (username, email, user_password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $password);
